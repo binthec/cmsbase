@@ -1,0 +1,21 @@
+{
+    "name": "binthec/cmsbase",
+    "description": "This is base functions for my cms.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "binthec",
+            "email": "binthec@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "laravel/framework": "~5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Binthec\\CmsBase\\": "src/"
+        }
+    }
+}
