@@ -1,1 +1,7 @@
 vendor
+.idea
+
+/public/files/topimage/*
+!/public/files/topimage/.gitkeep
+/public/files/activity/*
+!/public/files/activity/.gitkeep

@@ -1,0 +1,293 @@
+/*
+ * BACKEND
+ */
+
+/**
+ * COMMON
+ */
+.margin-top20{
+    margin-top: 20px;
+}
+
+/*
+ * box
+ */
+.content-description {
+    font-size: 12px;
+    margin: 5px 0 0 5px;
+    color: #666;
+}
+.box .box-header.bg-primary {
+    color: #fff;
+}
+/*
+ * table
+ */
+table.with-btn > tbody > tr > td {
+    line-height: 34px;
+}
+table.with-btn-sm > tbody > tr > td {
+    line-height: 30px;
+}
+.text-center th {
+    text-align: center;
+}
+/**
+ * Form
+ */
+.form-group label.radio-inline:first-child {
+    padding-left: 0;
+}
+.form-group:last-child {
+    margin-bottom: 0;
+}
+.font16 {
+    font-size: 16px;
+}
+input[type=file] {
+    height: 34px;
+}
+/*
+ * label
+ */
+.label-lg {
+    font-size: 100%;
+}
+/* カーソル */
+.cursor-zoomIn {
+    cursor: zoom-in;
+}
+/* フラッシュメッセージ */
+.flash-msg {
+    display: none;
+    position: absolute;
+    top: 35%;
+    left: 25%;
+    right: 0;
+    width: 50%;
+    z-index: 99999;
+    color: #FFF;
+    background-color: #000;
+    text-align: center;
+    padding: 100px 10px;
+    font-size: 1.4em;
+}
+.err {
+    background-color: red !important;
+}
+/* menu */
+.main-sidebar .sidebar-menu li.header {
+    color: #3c8dbc;
+    font-weight: bold;
+}
+/**
+ * ********************************************
+ *                 Dropzone
+ * ********************************************
+ */
+.pict-add-box {
+    display: block;
+    width: 100%;
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #ccc;
+    font-size: 20px;
+    padding: 10px;
+    line-height: 80px;
+    height: 100px;
+}
+.pict-add-box:hover {
+    color: #3c8dbc;
+    border-color: #3c8dbc;
+}
+#pict-preview-box {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}
+.uploaded-preview {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+    min-height: 100px;
+}
+.uploaded-img {
+    border-radius: 10px;
+    overflow: hidden;
+    width: 120px;
+    height: 80px;
+}
+#topimage-edit .uploaded-img,
+#topimage-edit .dz-preview .dz-image,
+#topimage-edit .uploaded-img img {
+    width: 360px;
+    height: 240px;
+}
+#topimage-edit .dz-preview .dz-details {
+    top: 30%;
+}
+#topimage-edit .dz-preview .dz-success-mark,
+#topimage-edit .dz-preview .dz-error-mark {
+    top: 45%;
+}
+.uploaded-img img {
+    display: block;
+    width: 120px;
+    height: 80px;
+}
+.uploaded-preview .remove {
+    font-size: 14px;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+    border: none;
+}
+.uploaded-preview .remove:hover {
+    text-decoration: underline;
+}
+/**
+ * dropzoneのサムネイル表示のカスタマイズ
+ */
+.dz-preview {
+    margin: 10px;
+}
+.dz-preview .dz-image {
+    height: 80px;
+    border-radius: 10px;
+}
+.dz-preview .dz-details {
+    padding: 1em 1em;
+}
+.dz-preview .dz-success-mark,
+.dz-preview .dz-error-mark {
+    top: 40px;
+}
+.uploaded-img img,
+.dz-image img {
+    cursor: move;
+}
+/**
+ * ********************************************
+ *                 select2
+ * ********************************************
+ */
+.select2-container--default
+.select2-selection--single {
+    height: 34px;
+}
+.select2-container--default
+.select2-selection--single
+.select2-selection__arrow {
+    height: 32px;
+}
+/**
+ * ********************************************
+ *              topimage order edit
+ * ********************************************
+ */
+#topimages {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+#topimages li {
+    float: left;
+    margin: 2px;
+    padding: 2px;
+}
+#topimages li img {
+    width: 100%;
+    height: 100px;
+    max-width: 100%;
+    max-height: 100px;
+}
+#topimages li.list {
+    text-align: center;
+    cursor: pointer;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+.highlight {
+    border: 3px dotted #3c8dbc;;
+    font-weight: bold;
+    background-color: lightblue;
+}
+#topimages li img,
+.highlight {
+    border-radius: 10px;
+}
+/**
+ * ********************************************
+ *                  dashboard
+ * ********************************************
+ */
+/**
+ * トップ画像
+ */
+.top-slider img {
+    width: auto;
+    height: 200px;
+}
+.top-slider .slick-prev,
+.top-slider .slick-next {
+    z-index: 1;
+    width: 30px;
+    height: 30px;
+}
+.top-slider .slick-prev {
+    left: 20px !important;
+}
+.top-slider .slick-next {
+    right: 20px;
+}
+.top-slider .slick-prev::before,
+.top-slider .slick-next::before {
+    z-index: 1;
+    font-size: 30px;
+}
+/**
+ * 活動の様子
+ */
+#act-box .box-body {
+    background-color: #f6f6f6;
+}
+.act-post {
+    background-color: #fff;
+    padding: 15px 15px 10px;
+    margin-bottom: 15px;
+}
+.act-post .entry-thumbnail {
+    margin: -15px -15px 15px;
+    position: relative;
+}
+.act-post img {
+    width: 100%;
+}
+.act-post h2.entry-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+.act-post .entry-date {
+    font-size: 12px;
+    display: block;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    color: #45aed6;
+}
+.act-post .entry-place {
+    font-size: 12px;
+    line-height: 12px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+/**
+ * navbar
+ */
+ul.dropdown-menu li.user-header i {
+    font-size: 90px;
+}
+li.dropdown a.dropdown-toggle i {
+    font-size: 18px;
+}

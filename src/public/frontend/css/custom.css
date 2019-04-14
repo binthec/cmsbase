@@ -1,0 +1,190 @@
+/**
+ * ************************************
+ *             トップページ
+ * ************************************
+ */
+
+.btn {
+    border-bottom-width: 0;
+}
+/*
+ * section
+ */
+.section-footer {
+    text-align: right;
+    margin-top: 50px;
+}
+/**
+ * スライド画像
+ */
+.top-slider img {
+    width: auto;
+    height: 600px;
+}
+.top-slider .slick-prev,
+.top-slider .slick-next {
+    z-index: 1;
+    width: 80px;
+    height: 80px;
+}
+.top-slider .slick-prev {
+    left: 20px !important;
+}
+.top-slider .slick-next {
+    right: 20px;
+}
+.top-slider .slick-prev::before,
+.top-slider .slick-next::before {
+    z-index: 1;
+    font-size: 80px;
+}
+/*
+ * 活動の様子
+ */
+#home #act .btn.btn-primary {
+    margin-top: 0;
+}
+/**
+ * カレンダー
+ */
+#home #events {
+    padding: 87px 0 87px 0;
+    background-color: #f6f6f6;
+}
+#home #events #calendar {
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 5px;
+}
+.fc-row th.fc-day-header,
+.fc-unthemed td.fc-today {
+    background-color: #CBE6F3;
+}
+.fc-row th.fc-sat {
+    background-color: #FCF1D3;
+}
+.fc-row th.fc-sun {
+    background-color: #F6D4D8;
+}
+/**
+ * ************************************
+ *         活動の様子　個別ページ
+ * ************************************
+ */
+
+/**
+ * 活動の様子のスライド
+ */
+#act .act-picts{
+    margin-bottom: 50px;
+}
+#act .act-picts img {
+    width: 270px;
+    height: 180px;
+}
+.act-picts .slick-prev,
+.act-picts .slick-next {
+    z-index: 1;
+    width: 30px;
+    height: 30px;
+}
+.act-picts .slick-next {
+    right: 10px;
+}
+.act-picts .slick-prev {
+    left: 10px;
+}
+.act-picts .slick-prev:before,
+.act-picts .slick-next:before {
+    font-size: 30px;
+    opacity: .90;
+}
+/*
+ * 活動の様子詳細ページ
+ */
+#act {
+    padding: 60px 0 87px 0;
+    background: #f6f6f6;
+    overflow: hidden;
+}
+#act .post {
+    background: #fff;
+    margin-bottom: 50px;
+    padding: 30px 60px;
+    line-height: 2.2em;
+}
+#act .entry-date {
+    color: #45aed6;
+}
+#act .entry-place {
+    margin-left: 10px;
+}
+#act .timetable h2 {
+    font-weight: 400;
+}
+#act .timetable > header {
+    padding-top: 0;
+}
+/**
+ * Timetable
+ */
+#timetable{
+    padding: 60px 0 87px;
+}
+/**
+ * masonry
+ */
+#masonry-photo-base {
+    margin-bottom: 50px;
+}
+.grid {
+    /*background: #FFF;*/
+    /*padding: 10px 0 0 10px;*/
+    margin: 0 auto;
+}
+.grid:after {/* clearfix */
+    content: '';
+    display: block;
+    clear: both;
+}
+@media screen and (min-width:1130px){
+    .grid {
+        max-width: 1130px;
+    }
+}
+@media (min-width:880px) and (max-width:1129px){
+    .grid {
+        max-width: 850px;
+    }
+}
+@media (min-width: 1px) and (max-width:600px){
+    .grid {
+        max-width: 570px;
+    }
+}
+.grid-item {
+    width: 270px;
+    margin-bottom: 10px;
+}
+/**
+ * ************************************
+ *              common
+ * ************************************
+ */
+
+/**
+ * ページネーション
+ */
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+    background-color: #ff641b;
+    border-color: #ff641b;
+}
+.pagination > li > a,
+.pagination > li > span {
+    color: #ff641b;
+}
