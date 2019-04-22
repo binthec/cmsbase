@@ -40,6 +40,7 @@ class CmsBaseServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->register(\Binthec\CmsBase\Providers\AuthServiceProvider::class);
         $this->app->register(\Binthec\CmsBase\Providers\RouteServiceProvider::class);
     }
 

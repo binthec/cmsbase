@@ -7,7 +7,7 @@ Route::domain(env('BACKEND_DOMAIN'))->namespace('Backend')->group(function () {
     /**
      * 認証しなくても見られる画面
      */
-    Route::middleware('guest:web')->group(function () {
+    Route::middleware('guest')->group(function () {
         Route::get('/', 'Auth\LoginController@showLoginForm');
 
         //認証系
@@ -22,7 +22,7 @@ Route::domain(env('BACKEND_DOMAIN'))->namespace('Backend')->group(function () {
     /**
      * 認証の必要な画面
      */
-    Route::middleware('auth:web')->group(function () {
+    Route::middleware('auth')->group(function () {
         Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
         //ログアウト

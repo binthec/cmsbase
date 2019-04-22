@@ -143,7 +143,9 @@
                             <li class="{{ Helper::isActiveUrl('user/create') }}"><a href="{{ route('user.create') }}"><i class="fa fa-circle-o"></i> 新規登録</a></li>
                         </ul>
                     </li>
+                @endcan
 
+                @can('system-only')
                     <li class="{{ Helper::isActiveUrl('actionlog*') }}">
                         <a href="{{ route('actionlog.index') }}"><i class="fa fa-circle-o text-aqua"></i> <span>操作ログ閲覧</span></a>
                     </li>

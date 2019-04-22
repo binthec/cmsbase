@@ -5,15 +5,15 @@
 @section('content')
 
     {{-- トップ画像のスライダー --}}
-    {{--@if($topimages->count() > 0)--}}
-        {{--<section>--}}
-            {{--<div class="top-slider">--}}
-                {{--@foreach($topimages as $img)--}}
-                    {{--<div><img src="{{ $img->getPictPath() }}"></div>--}}
-                {{--@endforeach--}}
-            {{--</div>--}}
-        {{--</section>--}}
-    {{--@endif--}}
+    @if($topimages->count() > 0)
+        <section>
+            <div class="top-slider">
+                @foreach($topimages as $img)
+                    <div><img src="{{ $img->getPictPath() }}"></div>
+                @endforeach
+            </div>
+        </section>
+    @endif
 
     <section id="services">
         <div class="container">
@@ -75,21 +75,21 @@
         </div><!--/.container-->
     </section><!--/#services-->
 
-    {{--@if($activities->count() > 0)--}}
-        {{--<section id="act">--}}
-            {{--<div class="container">--}}
+    @if($activities->count() > 0)
+        <section id="act">
+            <div class="container">
 
-                {{--@include('frontend.activity.small-list')--}}
+                @include('cmsbase::frontend.activity.small-list')
 
-                {{--<div class="section-footer">--}}
-                    {{--<div class="wow fadeInLeft">--}}
-                        {{--<a href="{{ route('front.act.index') }}" class="btn btn-primary">もっと見る</a>--}}
-                    {{--</div>--}}
-                {{--</div><!-- /.section-footer -->--}}
+                <div class="section-footer">
+                    <div class="wow fadeInLeft">
+                        <a href="{{ route('front.act.index') }}" class="btn btn-primary">もっと見る</a>
+                    </div>
+                </div><!-- /.section-footer -->
 
-            {{--</div><!-- /.container -->--}}
-        {{--</section><!--/#act-->--}}
-    {{--@endif--}}
+            </div><!-- /.container -->
+        </section><!--/#act-->
+    @endif
 
 
     <section id="animated-number">
@@ -193,13 +193,13 @@
 
 @section('js')
     @include('cmsbase::common.top-js')
-    {{--<script>--}}
-        {{--//OWL for Activity--}}
-        {{--$(document).ready(function ($) {--}}
-            {{--$("#owl-box").owlCarousel();--}}
-        {{--});--}}
-        {{--$("#owl-box").owlCarousel({--}}
-            {{--items: 4,--}}
-        {{--})--}}
-    {{--</script>--}}
+    <script>
+        //OWL for Activity
+        $(document).ready(function ($) {
+            $("#owl-box").owlCarousel();
+        });
+        $("#owl-box").owlCarousel({
+            items: 4,
+        })
+    </script>
 @endsection

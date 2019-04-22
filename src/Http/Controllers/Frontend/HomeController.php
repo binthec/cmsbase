@@ -5,8 +5,8 @@ namespace Binthec\CmsBase\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-//use App\Topimage;
-//use App\Activity;
+use Binthec\CmsBase\Models\Topimage;
+use Binthec\CmsBase\Models\Activity;
 use Binthec\CmsBase\Models\Event;
 
 class HomeController extends Controller
@@ -19,12 +19,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-//	    $topimages = Topimage::open()->get();
-//	    $activities = Activity::open()->take(4)->get();
+        $topimages = Topimage::open()->get();
+        $activities = Activity::open()->take(4)->get();
         $events = Event::getAllEvents();
-//		return view('frontend.home', compact('topimages', 'activities', 'events'));
-
-        return view('cmsbase::frontend.home', compact('events'));
+        return view('cmsbase::frontend.home', compact('topimages', 'activities', 'events'));
     }
 
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace Binthec\TestPkg\Http\Controllers\Frontend;
+namespace Binthec\CmsBase\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Activity;
+use Binthec\CmsBase\Models\Activity;
 use Intervention\Image\Exception\NotFoundException;
 
 class ActivityController extends Controller
@@ -17,10 +17,8 @@ class ActivityController extends Controller
      */
     public function index()
     {
-//        $activities = Activity::open()->paginate(Activity::ACT_NUM_LIST);
-//        return view('frontend.activity.index', compact('activities'));
-
-        return view('testpkg::frontend.activity.index');
+        $activities = Activity::open()->paginate(Activity::ACT_NUM_LIST);
+        return view('cmsbase::frontend.activity.index', compact('activities'));
     }
 
     /**
@@ -42,7 +40,7 @@ class ActivityController extends Controller
             throw new NotFoundException('指定されたURLは無効です。URLを確認してください。');
         }
 
-        return view('frontend.activity.detail-' . Activity::$typePrefix[$activity->type], compact('actSingle', 'activities'));
+        return view('cmsbase::frontend.activity.detail-' . Activity::$typePrefix[$activity->type], compact('actSingle', 'activities'));
 
     }
 }

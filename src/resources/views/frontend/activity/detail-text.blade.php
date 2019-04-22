@@ -1,4 +1,4 @@
-@extends('frontend.layouts.app')
+@extends('cmsbase::frontend.layouts.app')
 
 @section('bodyId', 'act-detail')
 
@@ -9,7 +9,7 @@
             <div class="section-header">
                 <h2 class="section-title text-center wow fadeInDown">{{ $actSingle->title }}</h2>
                 <p class="text-center wow fadeInDown">
-                    <span class="entry-date">{{ getJaDate($actSingle->date) }}</span>
+                    <span class="entry-date">{{ Helper::getJaDate($actSingle->date) }}</span>
                     <span class="entry-place">於&ensp;{{ $actSingle->place }}</span>
                 </p>
             </div>
@@ -17,11 +17,9 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    @include('frontend.activity.timetable', ['actSingle' => $actSingle])
-
                     <div class="act-picts">
                         @foreach($actSingle->pictures as $pict)
-                            <img src="{{ $pict->getPictPath(\App\Activity::$pictPrefix[\App\Activity::TEXT_BASE]) }}">
+                            <img src="{{ $pict->getPictPath(\Binthec\CmsBase\Models\Activity::$pictPrefix[\Binthec\CmsBase\Models\Activity::TEXT_BASE]) }}">
                         @endforeach
                     </div>
 
@@ -32,22 +30,22 @@
                 </div><!-- /.col -->
             </div><!-- /.row -->
 
-            @include('frontend.activity.small-list')
-            @include('frontend.activity.see-more')
+            @include('cmsbase::frontend.activity.small-list')
+            @include('cmsbase::frontend.activity.see-more')
 
         </div><!-- /.container -->
     </section>
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="/vendor/slick/slick.css"/>
-    <link rel="stylesheet" href="/vendor/slick/slick-theme.css"/>
-    <link rel="stylesheet" href="/vendor/vertical-timeline/css/component.css"/>
-    <link rel="stylesheet" href="/vendor/vertical-timeline/css/default.css"/>
+    <link rel="stylesheet" href="/lib/slick/slick.css"/>
+    <link rel="stylesheet" href="/lib/slick/slick-theme.css"/>
+    <link rel="stylesheet" href="/lib/vertical-timeline/css/component.css"/>
+    <link rel="stylesheet" href="/lib/vertical-timeline/css/default.css"/>
 @endsection
 
 @section('js')
-    <script src="/vendor/slick/slick.min.js"></script>
+    <script src="/lib/slick/slick.min.js"></script>
     <script>
         //Slider
         $('.act-picts').slick({
@@ -59,5 +57,5 @@
             autoplaySpeed: 3000,
         });
     </script>
-    <script src="/vendor/vertical-timeline/js/modernizr.custom.js"></script>
+    <script src="/lib/vertical-timeline/js/modernizr.custom.js"></script>
 @endsection
