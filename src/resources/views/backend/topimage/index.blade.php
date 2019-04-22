@@ -1,11 +1,11 @@
-@extends('backend.layouts.app')
+@extends('cmsbase::backend.layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="/vendor/lity/lity.min.css">
+    <link rel="stylesheet" href="/lib/lity/lity.min.css">
 @endsection
 
 @section('js')
-    <script src="/vendor/lity/lity.min.js"></script>
+    <script src="/lib/lity/lity.min.js"></script>
 @endsection
 
 @section('content')
@@ -54,7 +54,7 @@
                                             <td class="text-center font16">{{ $image->order }}</td>
                                             <td class="text-center">
                                                 <label class="label label-lg {{ ($image->status === 1)? 'label-info' : 'label-danger' }}">
-                                                    {{ \App\Topimage::$statusList[$image->status] }}
+                                                    {{ \Binthec\CmsBase\Models\Topimage::$statusList[$image->status] }}
                                                 </label>
                                             </td>
                                             <td>

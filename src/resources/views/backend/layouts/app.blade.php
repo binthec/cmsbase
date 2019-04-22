@@ -103,51 +103,51 @@
                     <a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                 </li>
 
-                {{--<li class="treeview {{ isActiveUrl('topimage*') }}">--}}
-                    {{--<a href="#">--}}
-                        {{--<i class="fa fa-image"></i> <span>トップ画像</span>--}}
-                        {{--<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>--}}
-                    {{--</a>--}}
-                    {{--<ul class="treeview-menu {{ isActiveUrl('topimage*') }}">--}}
-                        {{--<li class="{{ isActiveUrl('topimage') }}"><a href="{{ route('topimage.index') }}"><i class="fa fa-circle-o"></i> 一覧表示・編集</a></li>--}}
-                        {{--<li class="{{ isActiveUrl('topimage/create') }}"><a href="{{ route('topimage.create') }}"><i class="fa fa-circle-o"></i> 新規登録</a></li>--}}
-                        {{--<li class="{{ isActiveUrl('topimage/order') }}"><a href="{{ route('topimage.order.edit') }}"><i class="fa fa-circle-o"></i> 表示順</a></li>--}}
-                    {{--</ul>--}}
-                {{--</li>--}}
+                <li class="treeview {{ Helper::isActiveUrl('topimage*') }}">
+                    <a href="#">
+                        <i class="fa fa-image"></i> <span>トップ画像</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu {{ Helper::isActiveUrl('topimage*') }}">
+                        <li class="{{ Helper::isActiveUrl('topimage') }}"><a href="{{ route('topimage.index') }}"><i class="fa fa-circle-o"></i> 一覧表示・編集</a></li>
+                        <li class="{{ Helper::isActiveUrl('topimage/create') }}"><a href="{{ route('topimage.create') }}"><i class="fa fa-circle-o"></i> 新規登録</a></li>
+                        <li class="{{ Helper::isActiveUrl('topimage/order') }}"><a href="{{ route('topimage.order.edit') }}"><i class="fa fa-circle-o"></i> 表示順</a></li>
+                    </ul>
+                </li>
 
-                {{--<li class="treeview {{ isActiveUrl('activity*') }}">--}}
-                    {{--<a href="#">--}}
-                        {{--<i class="fa fa-newspaper-o"></i> <span>活動の様子</span>--}}
-                        {{--<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>--}}
-                    {{--</a>--}}
-                    {{--<ul class="treeview-menu {{ isActiveUrl('topimage*') }}">--}}
-                        {{--<li class="{{ isActiveUrl('activity') }}"><a href="{{ route('activity.index') }}"><i class="fa fa-circle-o"></i> 一覧表示・編集</a></li>--}}
-                        {{--<li class="{{ isActiveUrl('activity/create') }}"><a href="{{ route('activity.create') }}"><i class="fa fa-circle-o"></i> 新規登録</a></li>--}}
-                    {{--</ul>--}}
-                {{--</li>--}}
+                <li class="treeview {{ Helper::isActiveUrl('activity*') }}">
+                    <a href="#">
+                        <i class="fa fa-newspaper-o"></i> <span>活動の様子</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu {{ Helper::isActiveUrl('topimage*') }}">
+                        <li class="{{ Helper::isActiveUrl('activity') }}"><a href="{{ route('activity.index') }}"><i class="fa fa-circle-o"></i> 一覧表示・編集</a></li>
+                        <li class="{{ Helper::isActiveUrl('activity/create') }}"><a href="{{ route('activity.create') }}"><i class="fa fa-circle-o"></i> 新規登録</a></li>
+                    </ul>
+                </li>
 
-                {{--<li class="{{ isActiveUrl('event') }}">--}}
-                    {{--<a href="{{ route('event.index') }}"><i class="fa fa-calendar"></i> <span>カレンダー</span></a>--}}
-                {{--</li>--}}
+                <li class="{{ Helper::isActiveUrl('event') }}">
+                    <a href="{{ route('event.index') }}"><i class="fa fa-calendar"></i> <span>カレンダー</span></a>
+                </li>
 
-                {{--@can('owner-higher')--}}
-                    {{--<li class="header">管理メニュー</li>--}}
+                @can('owner-higher')
+                    <li class="header">管理メニュー</li>
 
-                    {{--<li class="treeview {{ isActiveUrl('user*') }}">--}}
-                        {{--<a href="#">--}}
-                            {{--<i class="fa fa-newspaper-o"></i> <span>ユーザ管理</span>--}}
-                            {{--<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>--}}
-                        {{--</a>--}}
-                        {{--<ul class="treeview-menu {{ isActiveUrl('topimage*') }}">--}}
-                            {{--<li class="{{ isActiveUrl('user') }}"><a href="{{ route('user.index') }}"><i class="fa fa-circle-o"></i> 一覧表示・編集</a></li>--}}
-                            {{--<li class="{{ isActiveUrl('user/create') }}"><a href="{{ route('user.create') }}"><i class="fa fa-circle-o"></i> 新規登録</a></li>--}}
-                        {{--</ul>--}}
-                    {{--</li>--}}
+                    <li class="treeview {{ Helper::isActiveUrl('user*') }}">
+                        <a href="#">
+                            <i class="fa fa-newspaper-o"></i> <span>ユーザ管理</span>
+                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        </a>
+                        <ul class="treeview-menu {{ Helper::isActiveUrl('topimage*') }}">
+                            <li class="{{ Helper::isActiveUrl('user') }}"><a href="{{ route('user.index') }}"><i class="fa fa-circle-o"></i> 一覧表示・編集</a></li>
+                            <li class="{{ Helper::isActiveUrl('user/create') }}"><a href="{{ route('user.create') }}"><i class="fa fa-circle-o"></i> 新規登録</a></li>
+                        </ul>
+                    </li>
 
-                    {{--<li class="{{ isActiveUrl('actionlog*') }}">--}}
-                        {{--<a href="{{ route('actionlog.index') }}"><i class="fa fa-circle-o text-aqua"></i> <span>操作ログ閲覧</span></a>--}}
-                    {{--</li>--}}
-                {{--@endcan--}}
+                    <li class="{{ Helper::isActiveUrl('actionlog*') }}">
+                        <a href="{{ route('actionlog.index') }}"><i class="fa fa-circle-o text-aqua"></i> <span>操作ログ閲覧</span></a>
+                    </li>
+                @endcan
             </ul>
         </section><!-- /.sidebar -->
 

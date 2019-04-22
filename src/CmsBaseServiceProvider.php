@@ -3,6 +3,8 @@
 namespace Binthec\CmsBase;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Routing\Router;
+use Binthec\CmsBase\Http\Middleware\ForXHR;
 
 class CmsBaseServiceProvider extends ServiceProvider
 {
@@ -12,7 +14,7 @@ class CmsBaseServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Router $router)
     {
 //        $this->loadRoutesFrom(__DIR__.'/routes/web.php');
 
@@ -24,6 +26,11 @@ class CmsBaseServiceProvider extends ServiceProvider
         $this->publishes([__DIR__ . '/public/frontend' => public_path('/frontend'),], 'public');
         $this->publishes([__DIR__ . '/public/common' => public_path('/common'),], 'public');
         $this->publishes([__DIR__ . '/public/lib' => public_path('/lib'),], 'public');
+
+//        $router->pushMiddlewareToGroup('web',ForXHR::class);
+//        $router->prependMiddlewareToGroup('web',ForXHR::class);
+//        dd($router->getMiddlewareGroups());
+
     }
 
     /**

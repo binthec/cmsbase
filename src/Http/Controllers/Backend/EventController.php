@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Validator;
-use App\Event;
+use Binthec\CmsBase\Models\Event;
+use Binthec\Helper\Facades\Helper;
 
 class EventController extends Controller
 {
@@ -20,7 +21,7 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::getAllEvents();
-        return view('backend.event.index', compact('events'));
+        return view('cmsbase::backend.event.index', compact('events'));
     }
 
     /**
@@ -43,9 +44,9 @@ class EventController extends Controller
 
         try {
 
-            Event::create(['title' => $request->title, 'date' => getStdDate($request->date)]);
+            Event::create(['title' => $request->title, 'date' => Helper::getStdDate($request->date)]);
             DB::commit();
-            return redirect('/event')->with('editedDate', getStdDate($request->date));
+            return redirect('/event')->with('editedDate', Helper::getStdDate($request->date));
 
         } catch (\Exception $e) {
 
@@ -77,9 +78,9 @@ class EventController extends Controller
         DB::beginTransaction();
 
         try {
-            $event->update(['title' => $request->title, 'date' => getStdDate($request->date)]);
+            $event->update(['title' => $request->title, 'date' => Helper::getStdDate($request->date)]);
             DB::commit();
-            return redirect('/event')->with('editedDate', getStdDate($request->date));
+            return redirect('/event')->with('editedDate', Helper::getStdDate($request->date));
 
         } catch (\Exception $e) {
 

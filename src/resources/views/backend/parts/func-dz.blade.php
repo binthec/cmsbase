@@ -13,12 +13,19 @@
 
             this.on("addedfile", function (file) { //ファイルを追加した際の処理
                 //プレビューエリアにプレビューを追加
+                console.log('added a file.');
                 $('#pict-preview-box').append(file.previewTemplate);
             });
 
             this.on("sending", function (file, xhr, formData) { //ファイル送信時の処理
                 file.baseFileName = getBaseFileName(); //ユニークな名前を生成
                 formData.append('baseFileName', file.baseFileName);
+            });
+
+            this.on("error", function (file, errorMessage, xhr) { //ファイル送信時の処理
+                console.log('An error has occured. :' + errorMessage);
+                console.log(errorMessage);
+                console.log('XMLHttpRequest :' + xhr.message);
             });
 
             this.on("success", function (file, res) { //アップロードが成功した際の処理

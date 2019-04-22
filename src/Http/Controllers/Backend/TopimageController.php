@@ -2,7 +2,6 @@
 
 namespace Binthec\CmsBase\Http\Controllers\Backend;
 
-use App\Picture;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -10,7 +9,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Exception\NotFoundException;
 use Validator;
-use App\Topimage;
+use Binthec\CmsBase\Models\Topimage;
+use Binthec\CmsBase\Models\Picture;
 
 class TopimageController extends Controller
 {
@@ -27,7 +27,7 @@ class TopimageController extends Controller
     public function index()
     {
         $topimages = Topimage::order()->paginate(self::PAGINATION);
-        return view('backend.topimage.index', compact('topimages'));
+        return view('cmsbase::backend.topimage.index', compact('topimages'));
     }
 
     /**
@@ -38,7 +38,7 @@ class TopimageController extends Controller
     public function create()
     {
         $topimage = new Topimage;
-        return view('backend.topimage.edit', compact('topimage'));
+        return view('cmsbase::backend.topimage.edit', compact('topimage'));
     }
 
     /**
@@ -86,7 +86,7 @@ class TopimageController extends Controller
     public function edit(Topimage $topimage)
     {
         $pict = $topimage->pictures->first();
-        return view('backend.topimage.edit', compact('topimage', 'pict'));
+        return view('cmsbase::backend.topimage.edit', compact('topimage', 'pict'));
     }
 
     /**
@@ -173,7 +173,7 @@ class TopimageController extends Controller
     public function orderEdit()
     {
         $topimages = Topimage::order()->get();
-        return view('Backend.topimage.order', compact('topimages'));
+        return view('cmsbase::Backend.topimage.order', compact('topimages'));
     }
 
     /**

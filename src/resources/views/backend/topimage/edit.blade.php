@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('cmsbase::backend.layouts.app')
 @section('bodyId', 'topimage-edit')
 
 @section('content')
@@ -52,17 +52,17 @@
                                 <div class="col-sm-9">
 
                                     <label class="radio-inline">
-                                        @if($topimage->id !== null && $topimage->status === \App\Topimage::OPEN)
-                                            {{ Form::radio('status', \App\Topimage::OPEN, true, ['class' => 'flat-blue']) }} 公開
+                                        @if($topimage->id !== null && $topimage->status === \Binthec\CmsBase\Models\Topimage::OPEN)
+                                            {{ Form::radio('status', \Binthec\CmsBase\Models\Topimage::OPEN, true, ['class' => 'flat-blue']) }} 公開
                                         @else
-                                            {{ Form::radio('status', \App\Topimage::OPEN, '', ['class' => 'flat-blue']) }} 公開
+                                            {{ Form::radio('status', \Binthec\CmsBase\Models\Topimage::OPEN, '', ['class' => 'flat-blue']) }} 公開
                                         @endif
                                     </label>
                                     <label class="radio-inline">
-                                        @if($topimage->id === null || $topimage->status === \App\Topimage::CLOSE)
-                                            {{ Form::radio('status', \App\Topimage::CLOSE, true, ['class' => 'flat-blue']) }} 非公開
+                                        @if($topimage->id === null || $topimage->status === \Binthec\CmsBase\Models\Topimage::CLOSE)
+                                            {{ Form::radio('status', \Binthec\CmsBase\Models\Topimage::CLOSE, true, ['class' => 'flat-blue']) }} 非公開
                                         @else
-                                            {{ Form::radio('status', \App\Topimage::CLOSE, '', ['class' => 'flat-blue']) }} 非公開
+                                            {{ Form::radio('status', \Binthec\CmsBase\Models\Topimage::CLOSE, '', ['class' => 'flat-blue']) }} 非公開
                                         @endif
                                     </label>
 
@@ -90,7 +90,7 @@
 
                                             <div class="uploaded-preview">
                                                 <div class="uploaded-img">
-                                                    <img src="{{ $topimage->pictures->first()->getPictPath(\App\Topimage::class) }}">
+                                                    <img src="{{ $topimage->pictures->first()->getPictPath(\Binthec\CmsBase\Models\Topimage::class) }}">
                                                 </div>
                                                 <a href="javascript: undefined;" class="remove" data-act-id="{{ $topimage->id }}" data-pict-id="{{ $pict->id }}" data-pict-name="{{ $pict->name }}">削除</a>
 
@@ -133,7 +133,7 @@
 @endsection
 
 @section('js')
-    @include('backend/parts/func-dz', ['className' => 'topimage'])
+    @include('cmsbase::backend/parts/func-dz', ['className' => 'topimage'])
     <script>
         $(function () {
             var Topimage = new Dropzone('#pictUpload', { //Dropzoneインスタンスを生成

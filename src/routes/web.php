@@ -7,7 +7,7 @@ Route::domain(env('BACKEND_DOMAIN'))->namespace('Backend')->group(function () {
     /**
      * 認証しなくても見られる画面
      */
-    Route::middleware('guest')->group(function () {
+    Route::middleware('guest:web')->group(function () {
         Route::get('/', 'Auth\LoginController@showLoginForm');
 
         //認証系
@@ -22,7 +22,7 @@ Route::domain(env('BACKEND_DOMAIN'))->namespace('Backend')->group(function () {
     /**
      * 認証の必要な画面
      */
-    Route::middleware('auth')->group(function () {
+    Route::middleware('auth:web')->group(function () {
         Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
         //ログアウト
@@ -41,10 +41,27 @@ Route::domain(env('BACKEND_DOMAIN'))->namespace('Backend')->group(function () {
         Route::get('activity/confirm/{activity}', 'ActivityController@confirm')->name('activity.confirm'); //表示確認
         Route::resource('activity', 'ActivityController');
 
+        //カレンダー
+        Route::resource('event', 'EventController', ['except' => ['create', 'edit', 'show']]);
+
         //ユーザ管理
         Route::get('mypage', 'UserController@myPage')->name('mypage');
         Route::put('user/{user}', 'UserController@update')->name('user.update');
         Route::put('user/password/{user}', 'UserController@updatePassword')->name('user.password.update');
+
+        /**
+         * オーナー以上（＝システム管理者とオーナー）にのみ許可された操作
+         */
+        Route::group(['middleware' => 'can:owner-higher'], function () {
+            //ユーザ管理
+            Route::get('user/create', 'Auth\RegisterController@showRegistrationForm')->name('user.create');
+            Route::post('user', 'Auth\RegisterController@register')->name('user.store');
+            Route::get('user/password/{user}/edit', 'UserController@editPassword')->name('user.password.edit');
+            Route::resource('user', 'UserController', ['except' => ['create', 'store', 'update']]);
+
+            //アクションログ
+            Route::resource('actionlog', 'Backend\ActionLogController');
+        });
     });
 });
 

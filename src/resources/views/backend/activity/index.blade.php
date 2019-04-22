@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('cmsbase::backend.layouts.app')
 
 @section('css')
     <link rel="stylesheet" href="/vendor/lity/lity.min.css">

@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('cmsbase::backend.layouts.app')
 @section('bodyId', 'order-edit')
 
 @section('content')
