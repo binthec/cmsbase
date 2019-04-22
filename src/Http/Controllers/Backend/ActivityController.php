@@ -2,14 +2,14 @@
 
 namespace Binthec\CmsBase\Http\Controllers\Backend;
 
-use App\Picture;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
 use Validator;
-use App\Activity;
+use Binthec\CmsBase\Models\Activity;
+use Binthec\CmsBase\Models\Picture;
 
 class ActivityController extends Controller
 {
@@ -26,7 +26,7 @@ class ActivityController extends Controller
     public function index()
     {
         $activities = Activity::paginate(self::PAGINATION);
-        return view('backend.activity.index', compact('activities'));
+        return view('cmsbase::backend.activity.index', compact('activities'));
     }
 
     /**
@@ -37,7 +37,7 @@ class ActivityController extends Controller
     public function create()
     {
         $activity = new Activity;
-        return view('backend.activity.edit', compact('activity'));
+        return view('cmsbase::backend.activity.edit', compact('activity'));
     }
 
     /**
@@ -85,7 +85,7 @@ class ActivityController extends Controller
      */
     public function edit(Activity $activity)
     {
-        return view('backend.activity.edit', compact('activity'));
+        return view('cmsbase::backend.activity.edit', compact('activity'));
     }
 
     /**

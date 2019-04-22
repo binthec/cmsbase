@@ -16,7 +16,7 @@
                 <div class="post-text">
                     <h5 class="entry-title">{{ mb_strimwidth($act->title, 0, 48, "...") }}</h5>
                     <p>
-                        <span class="date">{{ getJaDate($act->date) }}</span><span class="place">{{ $act->place }}</span>
+                        <span class="date">{{ Helper::getJaDate($act->date) }}</span><span class="place">{{ $act->place }}</span>
                     </p>
                 </div><!-- /.post-text -->
 

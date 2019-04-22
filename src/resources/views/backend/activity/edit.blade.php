@@ -56,7 +56,7 @@
                             <div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}">
                                 <label for="date" class="col-sm-3 control-label">開催日 <span class="text-danger">*</span></label>
                                 <div class="col-sm-3">
-                                    {!! Form::text('date', ($activity->id !== null)? getNormalDateFromStd($activity->date) : $activity->date, ['class' => 'form-control use-datepicker', 'placeholder' => 'yyyy/mm/dd']) !!}
+                                    {!! Form::text('date', ($activity->id !== null)? Helper::getNormalDateFromStd($activity->date) : $activity->date, ['class' => 'form-control use-datepicker', 'placeholder' => 'yyyy/mm/dd']) !!}
 
                                     @if($errors->has('date'))
                                         <span class="help-block">
@@ -106,7 +106,7 @@
                                             @forelse($activity->pictures as $pict)
                                                 <div class="uploaded-preview">
                                                     <div class="uploaded-img">
-                                                        <img src="{{ $pict->getPictPath(\App\Activity::$pictPrefix[\App\Activity::TEXT_BASE]) }}">
+                                                        <img src="{{ $pict->getPictPath(\Binthec\CmsBase\Models\Activity::$pictPrefix[\Binthec\CmsBase\Models\Activity::TEXT_BASE]) }}">
                                                     </div>
                                                     <a href="javascript: undefined;" class="remove" data-act-id={{ $activity->id }} data-pict-id="{{ $pict->id }}" data-pict-name="{{ $pict->name }}">削除</a>
 
@@ -196,7 +196,7 @@
                             <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
                                 <label for="status" class="col-sm-3 control-label">記事タイプ <span class="text-danger">*</span></label>
                                 <div class="col-sm-6">
-                                    {!! Form::select('type', \App\Activity::$typeList, $activity->type,['class' => 'form-control']) !!}
+                                    {!! Form::select('type', \Binthec\CmsBase\Models\Activity::$typeList, $activity->type,['class' => 'form-control']) !!}
                                     @if($errors->has('type'))
                                         <span class="help-block">
 							                <strong class="text-danger">{{ $errors->first('type') }}</strong>
@@ -212,22 +212,22 @@
                                 <div class="col-sm-9">
 
                                     <label class="radio-inline">
-                                        @if(old('status') == \App\Activity::OPEN)
-                                            {{ Form::radio('status', \App\Activity::OPEN, '', ['class' => 'flat-blue', 'checked']) }}
-                                        @elseif($activity->id !== null && $activity->status === \App\Activity::OPEN)
-                                            {{ Form::radio('status', \App\Activity::OPEN, true, ['class' => 'flat-blue']) }}
+                                        @if(old('status') == \Binthec\CmsBase\Models\Activity::OPEN)
+                                            {{ Form::radio('status', \Binthec\CmsBase\Models\Activity::OPEN, '', ['class' => 'flat-blue', 'checked']) }}
+                                        @elseif($activity->id !== null && $activity->status === \Binthec\CmsBase\Models\Activity::OPEN)
+                                            {{ Form::radio('status', \Binthec\CmsBase\Models\Activity::OPEN, true, ['class' => 'flat-blue']) }}
                                         @else
-                                            {{ Form::radio('status', \App\Activity::OPEN, '', ['class' => 'flat-blue']) }}
+                                            {{ Form::radio('status', \Binthec\CmsBase\Models\Activity::OPEN, '', ['class' => 'flat-blue']) }}
                                         @endif
                                         公開
                                     </label>
                                     <label class="radio-inline">
-                                        @if(old('status') == \App\Activity::CLOSE)
-                                            {{ Form::radio('status', \App\Activity::CLOSE, '', ['class' => 'flat-blue', 'checked']) }}
-                                        @elseif($activity->id === null || $activity->status === \App\Activity::CLOSE)
-                                            {{ Form::radio('status', \App\Activity::CLOSE, true, ['class' => 'flat-blue']) }}
+                                        @if(old('status') == \Binthec\CmsBase\Models\Activity::CLOSE)
+                                            {{ Form::radio('status', \Binthec\CmsBase\Models\Activity::CLOSE, '', ['class' => 'flat-blue', 'checked']) }}
+                                        @elseif($activity->id === null || $activity->status === \Binthec\CmsBase\Models\Activity::CLOSE)
+                                            {{ Form::radio('status', \Binthec\CmsBase\Models\Activity::CLOSE, true, ['class' => 'flat-blue']) }}
                                         @else
-                                            {{ Form::radio('status', \App\Activity::CLOSE, '', ['class' => 'flat-blue']) }}
+                                            {{ Form::radio('status', \Binthec\CmsBase\Models\Activity::CLOSE, '', ['class' => 'flat-blue']) }}
                                         @endif
                                         非公開
                                     </label>
@@ -261,7 +261,7 @@
 @endsection
 
 @section('js')
-    @include('backend/parts/func-dz', ['className' => 'activity'])
+    @include('cmsbase::backend.parts.func-dz', ['className' => 'activity'])
     <script src="/backend/js/use-ckeditor.js"></script>
     <script>
         $(function () {

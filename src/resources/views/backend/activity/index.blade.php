@@ -51,10 +51,10 @@
                                     <tr class="text-center">
                                         <td>
                                             <label class="label label-lg {{ ($act->status === 1)? 'label-info' : 'label-danger' }}">
-                                                {{ \App\Activity::$statusList[$act->status] }}
+                                                {{ \Binthec\CmsBase\Models\Activity::$statusList[$act->status] }}
                                             </label>
                                         </td>
-                                        <td>{{ getJaDate($act->date) }}</td>
+                                        <td>{{ Helper::getJaDate($act->date) }}</td>
                                         <td class="text-left">{{ $act->title }}</td>
                                         <td>{{ $act->place }}</td>
                                         <td><a class="btn btn-success" href="{{ route('activity.confirm', $act->id) }}" target="_blank">表示確認</a></td>

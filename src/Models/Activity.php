@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\SoftDeletes;
-//use App\Picture;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+
+use Binthec\Helper\Facades\Helper;
+use Binthec\CmsBase\Models\Picture;
 
 class Activity extends Model
 {
@@ -208,7 +210,7 @@ class Activity extends Model
     public function saveAll(Request $request)
     {
         $this->title = ($request->title !== null) ? $request->title : null;
-        $this->date = getStdDate($request->date); //必須項目
+        $this->date = Helper::getStdDate($request->date); //必須項目
         $this->place = $request->place; //必須項目
         $this->detail = ($request->detail !== null) ? $request->detail : null;
         $this->type = $request->type; //必須項目
