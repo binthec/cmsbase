@@ -152,7 +152,7 @@ class ActivityController extends Controller
         //単記事以外の記事を取得
         $activities = $activity->getActList();
 
-        return view('frontend.activity.detail', ['activities' => $activities, 'actSingle' => $activity]);
+        return view('cmsbase::frontend.activity.detail-' . Activity::$typePrefix[$activity->type], ['activities' => $activities, 'actSingle' => $activity]);
     }
 
     /**

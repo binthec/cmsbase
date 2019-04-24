@@ -97,7 +97,7 @@
             <div class="section-header">
                 <h2 class="section-title text-center wow fadeInDown">Special Thanks!!</h2>
                 <p class="text-center wow fadeInDown">
-                    私達「大分県体力づくり研究会」は、○○○○の資金提供を受けて活動を行っています。<br>
+                    私達「▲▲▲▲▲▲」は、○○○○の資金提供を受けて活動を行っています。<br>
                     皆様のご協力に感謝致します。
                 </p>
             </div>
@@ -136,10 +136,10 @@
                     <div class="panel-one">
                         <div class="user-img"><img alt="" src="/frontend/images/testimonail_1.jpg"></div>
                         <div class="testi-info">
-                            <h4>大分 太郎</h4>
+                            <h4>日本 太郎</h4>
                             <h5></h5>
                             <p>
-                                大分大学教授を退官後、実家の家のリフォームに勤しむいち大分市民。
+                                紹介文。テキストテキスト。紹介文。テキストテキスト。
                             </p>
                         </div>
                     </div>

@@ -14,6 +14,8 @@
                 </p>
             </div>
 
+            @include('cmsbase::frontend.activity.timetable')
+
             <div class="row">
                 <div class="col-md-12">
 

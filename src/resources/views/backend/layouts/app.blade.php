@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title> {{ config('app.name') }} | Admin </title>
+    <title> {{ env('APP_NAME') }} | Admin </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -49,7 +49,7 @@
         <!-- Logo -->
         <a href="{{ route('dashboard') }}" class="logo">
             <span class="logo-mini"><b><i class="fa fa-cog"></i></b></span>
-            <span class="logo-lg"><b>{{ config('app.name') }}</b>Admin</span>
+            <span class="logo-lg"><b>{{ env('APP_NAME') }}</b>Admin</span>
         </a>
 
         <nav class="navbar navbar-static-top">

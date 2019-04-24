@@ -50,6 +50,12 @@ class Activity extends Model
         self::TEXT_BASE => 'テキストメインの記事',
     ];
 
+    //短い名前バージョン
+    static $typeListShort = [
+        self::PHOTO_BASE => '写真',
+        self::TEXT_BASE => 'テキスト',
+    ];
+
     static $typePrefix = [
         self::PHOTO_BASE => 'photo',
         self::TEXT_BASE => 'text',
@@ -217,12 +223,14 @@ class Activity extends Model
         $this->status = $request->status; //必須項目
 
         $timetable = [];
-        if (!empty($request->time) && !empty($request->action)) { //プログラムの流れを整形
-            foreach ($request->time as $key => $time) {
+        foreach ($request->time as $key => $time) {
+            //値が入ってる場合のみ保存
+            if ($request->time[$key] !== null && $request->action[$key] !== null) {
                 $timetable[$key]['time'] = $time;
                 $timetable[$key]['action'] = $request->action[$key];
             }
         }
+
         $this->timetable = !empty($timetable) ? $timetable : null;
 
         $this->save();

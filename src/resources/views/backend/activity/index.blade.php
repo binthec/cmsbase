@@ -37,7 +37,8 @@
                             <table class="table table-bordered">
                                 <thead>
                                 <tr class="bg-primary text-center">
-                                    <th width="10%">ステータス</th>
+                                    <th width="8%">ステータス</th>
+                                    <th width="10%">タイプ</th>
                                     <th width="10%">開催日</th>
                                     <th>タイトル</th>
                                     <th width="10%">開催場所</th>
@@ -54,10 +55,11 @@
                                                 {{ \Binthec\CmsBase\Models\Activity::$statusList[$act->status] }}
                                             </label>
                                         </td>
+                                        <td>{{ \Binthec\CmsBase\Models\Activity::$typeListShort[$act->type] }}</td>
                                         <td>{{ Helper::getJaDate($act->date) }}</td>
                                         <td class="text-left">{{ $act->title }}</td>
                                         <td>{{ $act->place }}</td>
-                                        <td><a class="btn btn-success" href="{{ route('activity.confirm', $act->id) }}" target="_blank">表示確認</a></td>
+                                        <td><a class="btn btn-success" href="{{ route('activity.confirm', $act->id) }}" target="_blank"><i class="fa fa-external-link"></i> 表示確認</a></td>
                                         <td><a class="btn btn-primary" href="{{ route('activity.edit', $act->id) }}">編集</a></td>
                                         <td>
                                             <a class="btn btn-danger" data-toggle="modal" data-target="#destroy{{ $act->id }}">削除</a>

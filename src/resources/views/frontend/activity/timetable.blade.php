@@ -11,7 +11,7 @@
                     <li>
                         @if(!empty($timetable['time']))
                             <time class="cbp_tmtime" datetime="{{ $timetable['time'] }}}">
-                                <span>{{ getMdDate($actSingle->date) }}</span> <span>{{ $timetable['time'] }}</span>
+                                <span>{{ Helper::getMdDate($actSingle->date) }}</span> <span>{{ $timetable['time'] }}</span>
                             </time>
                         @endif
                         <div class="cbp_tmicon cbp_tmicon-earth"></div>
