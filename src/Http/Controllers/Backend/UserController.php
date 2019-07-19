@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 use Validator;
-use App\User;
+use Binthec\CmsBase\Models\User;
 
 class UserController extends Controller
 {
@@ -25,8 +25,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(self::PAGINATION);
-        return view('backend.user.index', compact('users'));
+        $users = User::where('role', '>=', Auth::user()->role)->paginate(self::PAGINATION);
+        return view('cmsbase::backend.user.index', compact('users'));
     }
 
     /**
@@ -34,10 +34,16 @@ class UserController extends Controller
      *
      * @param User $user
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(User $user)
     {
-        return view('backend.user.edit', compact('user'));
+
+//        dd($user);
+
+        $this->authorize('edit', $user);
+
+        return view('cmsbase::backend.user.edit', compact('user'));
     }
 
     /**
@@ -99,7 +105,7 @@ class UserController extends Controller
      */
     public function editPassword(User $user)
     {
-        return view('backend.user.edit-password', compact('user'));
+        return view('cmsbase::backend.user.edit-password', compact('user'));
     }
 
     /**
@@ -161,7 +167,7 @@ class UserController extends Controller
      */
     public function myPage()
     {
-        return view('backend.user.mypage', ['user' => Auth::user()]);
+        return view('cmsbase::backend.user.mypage', ['user' => Auth::user()]);
     }
 
 

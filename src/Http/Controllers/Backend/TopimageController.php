@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
-use Intervention\Image\Exception\NotFoundException;
 use Validator;
 use Binthec\CmsBase\Models\Topimage;
 use Binthec\CmsBase\Models\Picture;
@@ -57,12 +56,16 @@ class TopimageController extends Controller
                 ->withInput();
         }
 
-        DB::beginTransaction();
+//        DB::beginTransaction();
+
+
+        $topimage = new Topimage;
+        $topimage->saveAll($request);
+
 
         try {
 
-            $topimage = new Topimage;
-            $topimage->saveAll($request);
+
 
             DB::commit();
             return redirect('/topimage')->with('flashMsg', '登録が完了しました。');
@@ -85,8 +88,7 @@ class TopimageController extends Controller
      */
     public function edit(Topimage $topimage)
     {
-        $pict = $topimage->pictures->first();
-        return view('cmsbase::backend.topimage.edit', compact('topimage', 'pict'));
+        return view('cmsbase::backend.topimage.edit', compact('topimage'));
     }
 
     /**
@@ -133,37 +135,14 @@ class TopimageController extends Controller
      */
     public function destroy(Topimage $topimage)
     {
-        if (File::exists($topimage->uploadDir . $topimage->id)) {
-            File::deleteDirectory($topimage->uploadDir . $topimage->id);
+        if (File::exists($topimage->uploadDir . $topimage->image_dir)) {
+            File::deleteDirectory($topimage->uploadDir . $topimage->image_dir);
         }
 
         $topimage->delete();
 
         return redirect('/topimage')->with('flashMsg', '削除が完了しました。');
     }
-
-    /**
-     * Dropzone.jsからXHRで渡された画像を一時ディレクトリに保存するメソッド。Pictureモデルを呼び出す
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function pictStore(Request $request)
-    {
-        return Picture::pictStore($request, Topimage::class);
-    }
-
-    /**
-     * Dropzone.js から削除ボタンを押された時に呼び出されるメソッド。Picureモデルを呼び出す
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function pictDelete(Request $request)
-    {
-        return Picture::pictDelete($request, Topimage::class);
-    }
-
 
     /**
      * 表示順ページの表示

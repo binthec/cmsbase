@@ -49,7 +49,7 @@ class User extends Authenticatable
      */
     public function isHigherOwner()
     {
-        return $this->role <= self::OWNER;
+        return $this->role < self::OPERATOR;
     }
 
     /**
@@ -60,6 +60,29 @@ class User extends Authenticatable
     public static function getUserNames()
     {
         return User::all()->pluck('name', 'id');
+    }
+
+    /**
+     * そのユーザの権限で編集可能な role を配列で返すメソッド
+     *
+     * @return array
+     */
+    public function getAllowedRoles()
+    {
+
+        $roles = self::$roles;
+        if ($this->role >= self::OWNER) {
+
+            //システム管理者は権限 role=1 の場合だけを想定
+            foreach ($roles as $key => $role) {
+                if ($key < self::OWNER) {
+                    unset($roles[$key]);
+                }
+            }
+
+        }
+
+        return $roles;
     }
 
 }

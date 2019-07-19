@@ -24,6 +24,7 @@
                                     <thead>
                                     <tr class="bg-primary text-center">
                                         <th>ユーザ名</th>
+                                        <th>サイト内権限</th>
                                         <th>作成日</th>
                                         <th>最終変更日</th>
                                         <th>操作</th>
@@ -33,8 +34,9 @@
                                     @foreach($users as $user)
                                         <tr>
                                             <td class="text-center">{{ $user->name }}</td>
-                                            <td class="text-center">{{ getJaDateTime($user->created_at) }}</td>
-                                            <td class="text-center">{{ getJaDateTime($user->updated_at) }}</td>
+                                            <td class="text-center">{{ \Binthec\CmsBase\Models\User::$roles[$user->role] }}</td>
+                                            <td class="text-center">{{ Helper::getJaDateTime($user->created_at) }}</td>
+                                            <td class="text-center">{{ Helper::getJaDateTime($user->updated_at) }}</td>
                                             <td>
                                                 <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary">ユーザ名変更</a>
                                                 &emsp;

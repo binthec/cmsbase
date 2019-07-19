@@ -79,30 +79,16 @@
                             <div class="form-group{{ $errors->has('topimage') ? ' has-error' : '' }}">
                                 <label for="act-pict-tmp" class="col-sm-3 control-label">画像 <span class="text-danger">*</span></label>
                                 <div class="col-sm-9">
-
-
-                                    <div class="pict-add-box" id="pictUpload">
-                                        <i class="fa fa-image"> ファイルをドロップするか、ここをクリックしてください</i>
-                                    </div>
-
-                                    <div id="pict-preview-box">
-                                        @if($topimage->id !== null && $topimage->pictures->isNotEmpty())
-
-                                            <div class="uploaded-preview">
-                                                <div class="uploaded-img">
-                                                    <img src="{{ $topimage->pictures->first()->getPictPath(\Binthec\CmsBase\Models\Topimage::class) }}">
-                                                </div>
-                                                <a href="javascript: undefined;" class="remove" data-act-id="{{ $topimage->id }}" data-pict-id="{{ $pict->id }}" data-pict-name="{{ $pict->name }}">削除</a>
-
-                                                <span class="pict-input-box">
-                                                    {{ Form::hidden('topimage', $pict->name) }}
-                                                </span>
-                                            </div><!-- /.uploaded-preview -->
-                                        @endif
-                                    </div>
+                                    {{ Form::file('topimage', ['id' => 'topimage', 'required']) }}
+                                    @if($topimage->id !== null)
+                                        <div class="">
+                                            <img src="{{ $topimage->getImagePath() }}">
+                                        </div>
+                                    @endif
 
                                     <span class="help-block">
                                         <p class="text-warning">※高さ600px以上の画像推奨</p>
+                                        <p class="text-warning">※ファイルを新たにアップロードした場合、既存の画像は破棄されます</p>
                                         @if($errors->has('topimage'))
                                             <strong class="text-danger">{{ $errors->first('topimage') }}</strong>
                                         @endif
@@ -133,43 +119,4 @@
 @endsection
 
 @section('js')
-    @include('cmsbase::backend/parts/func-dz', ['className' => 'topimage'])
-    <script>
-        $(function () {
-            var Topimage = new Dropzone('#pictUpload', { //Dropzoneインスタンスを生成
-                url: "{{ route('topimage.pict.store') }}", //送信先
-                method: 'POST',
-                uploadMultiple: false, //複数アップロードを許可するか
-                acceptedFiles: '.jpg, .jpeg, .gif, .png',
-                maxFilesize: 8, // 8MBまで
-                addRemoveLinks: true,
-                dictRemoveFile: '削除',
-                thumbnailWidth: 360,
-                thumbnailHeight: 240,
-                maxFiles: 1, // ファイルアップロードは１つまで
-                dictMaxFilesExceeded: 'アップロード出来るファイルは１つです',
-                dictCancelUpload: 'アップロードをキャンセル',
-
-                init: getDZInit('topimage', 'topimage'),
-            });
-
-            /**
-             * 画像アップロードが成功したら、ドロップエリアは隠す
-             */
-            Topimage.on('success', function (file) {
-                hidePictUpload();
-            });
-
-        });
-    </script>
-
-    @if($topimage->id !== null && $topimage->pictures->isNotEmpty())
-        <script>
-            //編集の時の初期表示ではドロップゾーンを隠す
-            $(function () {
-                hidePictUpload();
-            });
-        </script>
-    @endif
-
 @endsection

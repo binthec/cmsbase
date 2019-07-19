@@ -2,7 +2,7 @@
 
 namespace Binthec\CmsBase\Policies;
 
-use App\User;
+use Binthec\CmsBase\Models\User;
 use Illuminate\Auth\Access\Gate;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
@@ -37,10 +37,27 @@ class UserPolicy
      * アップデートの際に、ユーザIDとログインしているユーザのIDが同じかを判断する
      *
      * @param User $user
+     * @param User $willChangeUser
      * @return bool
      */
     public function update(User $user, User $willChangeUser)
     {
         return $user->id === $willChangeUser->id;
+    }
+
+    /**
+     * アップデートの際に、自分を「含む」、自分以下の権限の場合のみ許可するポリシー
+     * オーナーなら、role >= 10 のこと
+     *
+     * @param User $user ←ログインしてるユーザ
+     * @param User $willChangeUser ←今から変更を加えるユーザ
+     * @return bool
+     */
+    public function edit(User $user, User $willChangeUser)
+    {
+
+//        dd($user);
+
+        return $user->role > $willChangeUser->role;
     }
 }

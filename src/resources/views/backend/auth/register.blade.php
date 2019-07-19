@@ -55,6 +55,19 @@
                                 </div>
                             </div>
 
+                            <hr>
+                            <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
+                                <label for="role" class="col-sm-3 control-label">サイト内権限 <span class="text-danger">*</span></label>
+                                <div class="col-sm-6">
+                                    {!! Form::select('role', $roles, '',['class' => 'form-control']) !!}
+                                    @if($errors->has('role'))
+                                        <span class="help-block">
+							                <strong class="text-danger">{{ $errors->first('role') }}</strong>
+						                </span>
+                                    @endif
+                                </div>
+                            </div><!-- form-group -->
+
                         </div><!-- /.box-body -->
 
                         <div class="box-footer">

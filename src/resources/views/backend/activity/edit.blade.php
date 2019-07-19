@@ -193,8 +193,9 @@
 
 
                             <hr>
+
                             <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
-                                <label for="status" class="col-sm-3 control-label">記事タイプ <span class="text-danger">*</span></label>
+                                <label for="type" class="col-sm-3 control-label">記事タイプ <span class="text-danger">*</span></label>
                                 <div class="col-sm-6">
                                     {!! Form::select('type', \Binthec\CmsBase\Models\Activity::$typeList, $activity->type,['class' => 'form-control']) !!}
                                     @if($errors->has('type'))

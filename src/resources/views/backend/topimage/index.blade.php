@@ -58,7 +58,7 @@
                                                 </label>
                                             </td>
                                             <td>
-                                                <img src="{{ $image->getPictPath() }}" height="38px" data-lity class="cursor-zoomIn">
+                                                <img src="{{ $image->getImagePath() }}" height="38px" data-lity class="cursor-zoomIn">
                                                 {{ $image->name }}
                                             </td>
                                             <td><a class="btn btn-primary" href="{{ route('topimage.edit', $image->id) }}">編集</a></td>
@@ -78,8 +78,7 @@
                                                             <div class="modal-body clearfix">
                                                                 <div>
                                                                     <p><i class="fa fa-image"></i> 選択したトップ画像：「{{ $image->name }}」</p>
-                                                                    <img src="{{ $image->baseFilePath . $image->id }}/{{ $image->baseFileName }}.{{ $image->extention }}"
-                                                                         height="100px">
+                                                                    <img src="{{ $image->getImagePath() }}" height="200px">
                                                                 </div>
                                                                 <div class="help-block pull-right">
                                                                     <p class="text-danger"><i class="fa fa-warning"></i>この処理は取り消せません。</p>

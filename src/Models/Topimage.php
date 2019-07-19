@@ -4,7 +4,6 @@ namespace Binthec\CmsBase\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 
 class Topimage extends Model
@@ -98,16 +97,6 @@ class Topimage extends Model
     }
 
     /**
-     * トップ画像のポリモーフィックリレーション
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     */
-    public function pictures()
-    {
-        return $this->morphMany(Picture::class, 'target');
-    }
-
-    /**
      * バリデーションルールを返すメソッド
      *
      * @param bool $storeFlg
@@ -132,34 +121,32 @@ class Topimage extends Model
      */
     public function saveAll(Request $request)
     {
-
         $this->name = $request->name;
         $this->status = $request->status;
-        if($this->order === null) { //表示順がまだ無い場合は、一番後ろに持って来る
+        if ($this->order === null) { //表示順がまだ無い場合は、一番後ろに持って来る
             $this->order = self::max('order') + 1;
         }
-        $this->save();
 
         //ファイル処理
         if ($request->topimage !== '') {
 
-            $uploadDir = $this->uploadDir . $this->id . '/';
-            $fileName = $request->topimage;
+            //新規作成の場合、ディレクトリ名を新しく生成
+            if ($this->image_dir === null) $this->image_dir = uniqid(rand());
 
-            //picturesテーブルから紐付いているものは一旦全削除
-            $this->pictures()->delete();
-            $this->pictures()->create(['name' => $fileName]);
+            $uploadDir = $this->uploadDir . $this->image_dir . '/';
+            $this->image_name = 'image' . '.' . $request->topimage->getClientOriginalExtension();
+
+            //編集の場合、既存の画像を削除
+            if ($this->id !== null) File::deleteDirectory($uploadDir, true);
 
             //保存先ディレクトリが無い場合は作成
-            if (!File::exists($uploadDir)) {
-                File::makeDirectory($uploadDir);
-            }
+            if (!File::exists($uploadDir)) File::makeDirectory($uploadDir);
 
-            //保存先に画像が無ければ（＝新しい画像の場合）、一時ディレクトリから移動
-            if (!File::exists($uploadDir . $fileName)) {
-                File::move($this->tmpDir . $fileName, $uploadDir . $fileName);
-            }
+            $request->file('topimage')->move($uploadDir, $this->image_name);
+
         }
+
+        $this->save();
 
     }
 
@@ -168,8 +155,8 @@ class Topimage extends Model
      *
      * @return mixed
      */
-    public function getPictPath()
+    public function getImagePath()
     {
-        return self::$baseFilePath . $this->id . '/' . $this->pictures->first()->name;
+        return self::$baseFilePath . $this->image_dir . '/' . $this->image_name;
     }
 }

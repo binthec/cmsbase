@@ -16,6 +16,8 @@ class CreateAllTables extends Migration
         Schema::create('topimages', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('image_dir');
+            $table->string('image_name');
             $table->integer('order')->nullable();
             $table->tinyInteger('status');
             $table->timestamps();

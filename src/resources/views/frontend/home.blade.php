@@ -9,7 +9,7 @@
         <section>
             <div class="top-slider">
                 @foreach($topimages as $img)
-                    <div><img src="{{ $img->getPictPath() }}"></div>
+                    <div><img src="{{ $img->getImagePath() }}"></div>
                 @endforeach
             </div>
         </section>

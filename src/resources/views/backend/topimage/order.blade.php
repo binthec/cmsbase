@@ -33,7 +33,7 @@
                                 <ul id="topimages" class="box-body">
                                     @foreach($topimages as $img)
                                         <li class="list">
-                                            <img src="{{ $img->getPictPath() }}">
+                                            <img src="{{ $img->getImagePath() }}">
                                             {!! Form::hidden('pictures[]', $img->id) !!}
                                         </li>
                                     @endforeach
