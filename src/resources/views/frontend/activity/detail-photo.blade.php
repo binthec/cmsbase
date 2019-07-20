@@ -29,11 +29,9 @@
             <div id="masonry-photo-base" class="row">
                 <div class="col-md-12">
                     <div class="grid">
-                        @foreach($actSingle->pictures as $pict)
+                        @foreach($actSingle->activityImages as $img)
                             <img class="grid-item"
-                                 src="{{ $pict->getPictPath(\Binthec\CmsBase\Models\Activity::$pictPrefix[\Binthec\CmsBase\Models\Activity::PHOTO_BASE]) }}"
-                                 width="{{ $pict->getImgSize('w', \Binthec\CmsBase\Models\Activity::$pictPrefix[\Binthec\CmsBase\Models\Activity::PHOTO_BASE]) }}"
-                                 height="{{ $pict->getImgSize('h', \Binthec\CmsBase\Models\Activity::$pictPrefix[\Binthec\CmsBase\Models\Activity::PHOTO_BASE]) }}">
+                                 src="{{ $img->getPhotoBaseImgPath() }}">
                         @endforeach
                     </div>
                 </div><!-- /.col -->

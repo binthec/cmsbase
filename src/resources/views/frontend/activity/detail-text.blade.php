@@ -20,8 +20,8 @@
                 <div class="col-md-12">
 
                     <div class="act-picts">
-                        @foreach($actSingle->pictures as $pict)
-                            <img src="{{ $pict->getPictPath(\Binthec\CmsBase\Models\Activity::$pictPrefix[\Binthec\CmsBase\Models\Activity::TEXT_BASE]) }}">
+                        @foreach($actSingle->activityImages as $img)
+                            <img src="{{ $img->getTextBaseImgPath() }}">
                         @endforeach
                     </div>
 

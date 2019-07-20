@@ -41,6 +41,7 @@ class CreateAllTables extends Migration
             $table->string('date');
             $table->string('place');
             $table->text('detail')->nullable();
+            $table->string('image_dir');
             $table->binary('timetable')->nullable();
             $table->tinyInteger('type')->default(1);
             $table->tinyInteger('status');
@@ -48,11 +49,11 @@ class CreateAllTables extends Migration
             $table->softDeletes();
         });
 
-        Schema::create('pictures', function (Blueprint $table) {
+        Schema::create('activity_images', function (Blueprint $table) {
             $table->increments('id');
-            $table->morphs('target');
+            $table->string('activity_id');
             $table->string('name');
-            $table->integer('order')->nullable();
+            $table->string('order')->nullable();
             $table->timestamps();
         });
 

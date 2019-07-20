@@ -46,6 +46,7 @@ table.with-btn-sm > tbody > tr > td {
 }
 input[type=file] {
     height: 34px;
+    border: none;
 }
 /*
  * label
@@ -79,95 +80,6 @@ input[type=file] {
 .main-sidebar .sidebar-menu li.header {
     color: #3c8dbc;
     font-weight: bold;
-}
-/**
- * ********************************************
- *                 Dropzone
- * ********************************************
- */
-.pict-add-box {
-    display: block;
-    width: 100%;
-    text-align: center;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    background-color: #fff;
-    color: #ccc;
-    font-size: 20px;
-    padding: 10px;
-    line-height: 80px;
-    height: 100px;
-}
-.pict-add-box:hover {
-    color: #3c8dbc;
-    border-color: #3c8dbc;
-}
-#pict-preview-box {
-    display: block;
-    width: 100%;
-    margin-top: 10px;
-}
-.uploaded-preview {
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
-    margin: 10px;
-    min-height: 100px;
-}
-.uploaded-img {
-    border-radius: 10px;
-    overflow: hidden;
-    width: 120px;
-    height: 80px;
-}
-#topimage-edit .uploaded-img,
-#topimage-edit .dz-preview .dz-image,
-#topimage-edit .uploaded-img img {
-    width: 360px;
-    height: 240px;
-}
-#topimage-edit .dz-preview .dz-details {
-    top: 30%;
-}
-#topimage-edit .dz-preview .dz-success-mark,
-#topimage-edit .dz-preview .dz-error-mark {
-    top: 45%;
-}
-.uploaded-img img {
-    display: block;
-    width: 120px;
-    height: 80px;
-}
-.uploaded-preview .remove {
-    font-size: 14px;
-    text-align: center;
-    display: block;
-    cursor: pointer;
-    border: none;
-}
-.uploaded-preview .remove:hover {
-    text-decoration: underline;
-}
-/**
- * dropzoneのサムネイル表示のカスタマイズ
- */
-.dz-preview {
-    margin: 10px;
-}
-.dz-preview .dz-image {
-    height: 80px;
-    border-radius: 10px;
-}
-.dz-preview .dz-details {
-    padding: 1em 1em;
-}
-.dz-preview .dz-success-mark,
-.dz-preview .dz-error-mark {
-    top: 40px;
-}
-.uploaded-img img,
-.dz-image img {
-    cursor: move;
 }
 /**
  * ********************************************

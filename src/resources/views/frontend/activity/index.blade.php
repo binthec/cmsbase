@@ -85,16 +85,20 @@
                             </li>
 
                         </ul>
-                    </div><!-- /.main -->
-                </div><!-- /.timetable -->
+                    </div>
+                    <!-- /.main -->
+                </div>
+                <!-- /.timetable -->
 
             </div>
 
             <div class="act-list">
 
-            </div><!-- /.act-list -->
+            </div>
+            <!-- /.act-list -->
 
-        </div><!-- /.container -->
+        </div>
+        <!-- /.container -->
     </section>
 
     <section id="act">

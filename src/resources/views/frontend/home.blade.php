@@ -39,7 +39,8 @@
                                     ing elit, sed do eiusmod .</p>
                             </div>
                         </div>
-                    </div><!--/.col-md-4-->
+                    </div>
+                    <!--/.col-md-4-->
 
                     <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="100ms">
                         <div class="media service-box">
@@ -54,7 +55,8 @@
                                     ing elit, sed do eiusmod .</p>
                             </div>
                         </div>
-                    </div><!--/.col-md-4-->
+                    </div>
+                    <!--/.col-md-4-->
 
                     <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-duration="300ms" data-wow-delay="200ms">
                         <div class="media service-box">
@@ -69,11 +71,15 @@
                                     ing elit, sed do eiusmod .</p>
                             </div>
                         </div>
-                    </div><!--/.col-md-4-->
+                    </div>
+                    <!--/.col-md-4-->
                 </div>
-            </div><!--/.row-->
-        </div><!--/.container-->
-    </section><!--/#services-->
+            </div>
+            <!--/.row-->
+        </div>
+        <!--/.container-->
+    </section>
+    <!--/#services-->
 
     @if($activities->count() > 0)
         <section id="act">
@@ -85,10 +91,13 @@
                     <div class="wow fadeInLeft">
                         <a href="{{ route('front.act.index') }}" class="btn btn-primary">もっと見る</a>
                     </div>
-                </div><!-- /.section-footer -->
+                </div>
+                <!-- /.section-footer -->
 
-            </div><!-- /.container -->
-        </section><!--/#act-->
+            </div>
+            <!-- /.container -->
+        </section>
+        <!--/#act-->
     @endif
 
 
@@ -102,7 +111,8 @@
                 </p>
             </div>
         </div>
-    </section><!--/#animated-number-->
+    </section>
+    <!--/#animated-number-->
 
 
     <section id="events">
@@ -120,8 +130,10 @@
                 </div>
             </div>
 
-        </div><!-- /.container -->
-    </section><!--/#events-->
+        </div>
+        <!-- /.container -->
+    </section>
+    <!--/#events-->
 
 
     <section id="testimonial">
@@ -144,9 +156,11 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- /.row -->
+            </div>
+            <!-- /.row -->
         </div>
-    </section> <!--/#testimonial-->
+    </section>
+    <!--/#testimonial-->
 
 
     <section id="get-in-touch">
@@ -184,7 +198,8 @@
             </div>
 
         </div>
-    </section><!--/#get-in-touch-->
+    </section>
+    <!--/#get-in-touch-->
 
 @endsection
 

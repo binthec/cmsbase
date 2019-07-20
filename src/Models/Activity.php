@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 use Binthec\Helper\Facades\Helper;
-use Binthec\CmsBase\Models\Picture;
+use Binthec\CmsBase\Models\ActivityImages;
 
 class Activity extends Model
 {
@@ -72,20 +72,6 @@ class Activity extends Model
     ];
 
     /**
-     * Dropzone.jsで上げた画像を一時的に保存するディレクトリの絶対パス
-     *
-     * @var string
-     */
-    public $tmpDir = '';
-
-    /**
-     * 一時的にファイルを保存するディレクトリのパス
-     *
-     * @var string
-     */
-    public static $tmpFilePath = '/app/public/act-pict-tmp/';
-
-    /**
      * アップロード先ディレクトリの絶対パス
      *
      * @var string
@@ -136,18 +122,17 @@ class Activity extends Model
     public function __construct()
     {
         parent::__construct();
-        $this->tmpDir = storage_path() . self::$tmpFilePath;
         $this->uploadDir = public_path() . self::$baseFilePath;
     }
 
     /**
-     * 活動の様子の、画像に対するポリモーフィックリレーション
+     * 画像のリレーション。1対多＝Activity:ActivityImages
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function pictures()
+    public function activityImages()
     {
-        return $this->morphMany(Picture::class, 'target');
+        return $this->hasMany(ActivityImages::class);
     }
 
     /**
@@ -201,7 +186,7 @@ class Activity extends Model
         ];
 
         if ($storeFlg === true) {
-            $rules = array_merge($rules, ['pictures' => 'required']);
+            $rules = array_merge($rules, ['images' => 'required']);
         }
 
         return $rules;
@@ -233,45 +218,53 @@ class Activity extends Model
 
         $this->timetable = !empty($timetable) ? $timetable : null;
 
+        //新規作成の場合、ディレクトリ名を新しく生成
+        if ($this->image_dir === null) $this->image_dir = uniqid(rand());
+
         $this->save();
 
         //画像が設定されている場合は保存処理
-        if (!empty($request->pictures)) {
+        if (!empty($request->images)) {
 
-            $uploadDir = $this->uploadDir . $this->id . '/'; //最終的な保存先
+            $uploadDir = $this->uploadDir . $this->image_dir . '/';
 
-            //picturesテーブルから紐付いているものは一旦全削除
-            $this->pictures()->delete();
+            //保存先ディレクトリが無い場合は作成
+            if (!File::exists($uploadDir)) File::makeDirectory($uploadDir);
+
+            //編集の場合、既存の画像を削除
+//            if ($this->id !== null) File::deleteDirectory($uploadDir, true);
 
             //それぞれの画像に対して処理
-            foreach ($request->pictures as $key => $pict) {
+            $num = 1;
+            foreach ($request->file('images') as $img) {
 
-                $this->pictures()->create(['name' => $pict, 'order' => $key + 1]);
+                $image = new ActivityImages();
+                $image->activity_id = $this->id;
+                $image->name = 'image' . $num . '.' . $img->getClientOriginalExtension();
+                $image->order = $num;
 
-                if (!File::exists($uploadDir)) { //保存先ディレクトリが無い場合は作成
-                    File::makeDirectory($uploadDir);
-                }
+                //画像を移動
+                $img->move($uploadDir, $image->name);
 
-                //保存先に画像が無ければ（＝新しい画像の場合）、一時ディレクトリから移動
-                //保存先に画像がある時（＝既に登録されている画像の場合）は何もしない
-                if (!File::exists($uploadDir . $pict)) {
-                    File::move($this->tmpDir . $pict, $uploadDir . $pict);
+                /**
+                 * リサイズ処理
+                 */
+                //写真ベース用
+                Image::make($uploadDir . $image->name)->resize(270, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($uploadDir . self::$pictPrefix[self::PHOTO_BASE] . $image->name);
 
-                    /**
-                     * リサイズ処理
-                     */
-                    //写真ベース用
-                    Image::make($uploadDir . $pict)->resize(270, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                    })->save($uploadDir . self::$pictPrefix[self::PHOTO_BASE] . $pict);
+                //テキストベース用
+                Image::make($uploadDir . $image->name)->fit(270, 180)->save($uploadDir . self::$pictPrefix[self::TEXT_BASE] . $image->name);
 
-                    //テキストベース用
-                    Image::make($uploadDir . $pict)->fit(270, 180)->save($uploadDir . self::$pictPrefix[self::TEXT_BASE] . $pict);
-                }
+                $image->save();
+                $num++;
 
             }
 
         }
+
+
     }
 
     /**
@@ -282,8 +275,8 @@ class Activity extends Model
     public function getMainPictPath()
     {
 
-        if ($this->pictures->count() > 0) {
-            return self::$baseFilePath . $this->id . '/' . self::$pictPrefix[self::TEXT_BASE] . $this->pictures->sortBy('order')->first()->name;
+        if ($this->activityImages->count() > 0) {
+            return self::$baseFilePath . $this->image_dir . '/' . self::$pictPrefix[self::TEXT_BASE] . $this->activityImages->sortBy('order')->first()->name;
         }
 
         return '';

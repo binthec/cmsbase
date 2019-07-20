@@ -18,22 +18,7 @@ class Topimage extends Model
         self::OPEN => '公　開',
         self::CLOSE => '非公開',
     ];
-
-
-    /**
-     * Dropzone.jsで上げた画像を一時的に保存するディレクトリの絶対パス
-     *
-     * @var string
-     */
-    public $tmpDir = '';
-
-    /**
-     * 一時的にファイルを保存するディレクトリのパス
-     *
-     * @var string
-     */
-    public static $tmpFilePath = '/app/public/topimage-tmp/';
-
+    
     /**
      * アップロード先ディレクトリの絶対パス
      *
@@ -70,7 +55,7 @@ class Topimage extends Model
     public function __construct()
     {
         parent::__construct();
-        $this->tmpDir = storage_path() . self::$tmpFilePath;
+//        $this->tmpDir = storage_path() . self::$tmpFilePath;
         $this->uploadDir = public_path() . self::$baseFilePath;
     }
 
@@ -151,7 +136,7 @@ class Topimage extends Model
     }
 
     /**
-     * トップ画像に紐づく画像の内、order が１の画像のパスを返すメソッド
+     * トップ画像のパス
      *
      * @return mixed
      */
