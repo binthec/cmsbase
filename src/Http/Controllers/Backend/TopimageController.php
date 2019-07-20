@@ -56,16 +56,12 @@ class TopimageController extends Controller
                 ->withInput();
         }
 
-//        DB::beginTransaction();
-
-
-        $topimage = new Topimage;
-        $topimage->saveAll($request);
-
+        DB::beginTransaction();
 
         try {
 
-
+            $topimage = new Topimage;
+            $topimage->saveAll($request);
 
             DB::commit();
             return redirect('/topimage')->with('flashMsg', '登録が完了しました。');
